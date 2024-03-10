@@ -10,18 +10,18 @@ from typing import List
 
 
 class Scrapper:
-    def __init__(self, pipeline: Pipeline, sources="newspapers.txt"):
+    def __init__(self, pipeline: Pipeline, sources: str ="newspapers.txt"):
         self.logger = logging.getLogger(__name__)
-        self.newspapers_list = self.__import_sources(sources)
-        self.pipeline = pipeline
+        self.newspapers_list: List[str] = self.__import_sources(sources)
+        self.pipeline: Pipeline = pipeline
 
-    def __import_sources(self, file_path) -> List[str]:
+    def __import_sources(self, file_path: str) -> List[str]:
         if not os.path.exists(file_path):
             self.logger.critical("Newspapers sources file not found.")
             return []
         with open(file_path, "r") as f:
             self.logger.info("Parsing newspapers sources file.")
-            sources = [line.strip() for line in f.readlines()]
+            sources: List[str] = [line.strip() for line in f.readlines()]
             self.logger.info("Found %d news sources", len(sources))
             return sources
 
@@ -66,7 +66,7 @@ class Scrapper:
                 )
             except Exception as e:
                 self.logger.error(
-                    "Exception raised while prarsing article: %s", e, exc_info=1
+                    "Exception raised while prarsing article: %s", e, exc_info=True
                 )
 
         else:

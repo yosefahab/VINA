@@ -18,7 +18,7 @@ class Database():
             self.articles = self.database["articles"]
             self.breaking_news = self.database["articles"]
         except Exception as e:
-            self.logger.critical("Failed to initialize mongodb: %s", e, exc_info=1)
+            self.logger.critical("Failed to initialize mongodb: %s", e, exc_info=True)
 
     def __add_breaking_news(self, article: Article):
         self.breaking_news.insert_one(article.toJson())
@@ -33,7 +33,6 @@ class Database():
             article = self.pipeline.get_one()
             if article is not None:
                 self.logger.info("DB got article: %s", article.__str__())
-                event.set()
 
             if event.is_set():
                 break

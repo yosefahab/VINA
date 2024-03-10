@@ -1,7 +1,11 @@
 # Backend
+Following are the modules that make up the backend for VINA.
 
-## article-scrapper
-Collects news from around the internet, especially from predefined list of trusted sources (newspapers.txt)
+## news-scrapper
+Collects news from around the internet, especially from predefined list of trusted sources (newspapers.txt).
+
+### Summarization
+Currently relying on newspaper3k's `nlp()` and `summary()` functions. But plan is to use more sophisticated Deep Learning methods.
 
 ## vina-server-rs
-serves the articles to the frontend via a rust http server
+serves the articles to the frontend via a rust actix-web http server

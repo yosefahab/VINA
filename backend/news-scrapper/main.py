@@ -21,10 +21,14 @@ def main():
     event = Event()
     with ThreadPoolExecutor(max_workers=2) as executor:
         news_scrapper = Scrapper(_pipeline)
-        db = Database(_pipeline)
+        try:
+            db = Database(_pipeline)
+        except Exception:
+            exit(0)
 
-        executor.submit(db.consume, event)
         executor.submit(news_scrapper.start, event)
+        executor.submit(db.consume, event)
 
+    logging.info("Finished, exitting.")
 if __name__ == "__main__":
     main()

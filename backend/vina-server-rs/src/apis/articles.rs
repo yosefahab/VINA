@@ -13,7 +13,7 @@ struct RequestParams {
     limit: Option<i64>,
 }
 
-// http://127.0.0.1:8080/article/<{category}><?limit=LIMIT&offset=OFFSET>
+// http://127.0.0.1:8080/articles/<{category}><?limit=LIMIT&offset=OFFSET>
 #[get("/articles/{category}")]
 async fn get_article(
     db: Data<MongoDB>,
@@ -21,9 +21,9 @@ async fn get_article(
     params: Query<RequestParams>,
 ) -> HttpResponse {
     let category = category.into_inner();
-    let offset = params.offset.unwrap_or(1);
-    let limit = params.limit.unwrap_or(10);
-    match db.get_article(category, offset, limit).await {
+    let offset = params.offset.unwrap_or(0).max(0);
+    let limit = params.limit.unwrap_or(10).max(0).min(20);
+    match db.get_articles(category, offset, limit).await {
         Some(a) => HttpResponse::Ok().json(a),
         None => HttpResponse::NotFound().into(),
     }
@@ -35,8 +35,8 @@ async fn get_breaking_news(
     params: Query<RequestParams>,
 ) -> HttpResponse {
     let category = category.into_inner();
-    let offset = params.offset.unwrap_or(1);
-    let limit = params.limit.unwrap_or(10);
+    let offset = params.offset.unwrap_or(0).max(0);
+    let limit = params.limit.unwrap_or(10).max(0).min(20);
     match db.get_breaking_news(category, offset, limit).await {
         Some(a) => HttpResponse::Ok().json(a),
         None => HttpResponse::NotFound().into(),

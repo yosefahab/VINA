@@ -11,46 +11,33 @@ import SwiftUI
 struct ArticleView: View {
     let article: ArticleViewModel
     @State private var isHovered: Bool = false
-    @State private var isShown: Bool = false
-    
     var body: some View {
         VStack(alignment: .leading) {
-            if isShown {
-                VStack(alignment: .leading) {
-                    if (article.isBreakingNews) {
-                        Text("BREAKING NEWS")
-                            .font(.title)
-                            .bold()
-                    }
-                    Text(article.title)
-                        .font(.title)
-                        .fontWeight(.semibold)
-                        .padding(article.isBreakingNews ? .bottom : .vertical)
-                    
-                    Text(article.summary)
-                        .font(.body)
-                        .multilineTextAlignment(.leading)
-                        .padding(.bottom)
-                    
-                    HStack {
-                        articleSource
-                        Spacer()
-                        articleDate
-                    }
-                    .font(.footnote)
-                    .padding(.bottom, 5)
-                }
-                .transition(.opacity)
-                .foregroundColor(article.isBreakingNews ? .red : .white)
-                .padding(.horizontal)
+            if (article.isBreakingNews) {
+                Text("BREAKING NEWS")
+                    .font(.title)
+                    .bold()
             }
-        }
-        .onAppear() {
-            withAnimation(.easeInOut(duration: 1)) {
-                isShown.toggle()
+            Text(article.title)
+                .font(.title)
+                .fontWeight(.semibold)
+                .padding(article.isBreakingNews ? .bottom : .vertical)
+            
+            Text(article.summary)
+                .font(.body)
+                .multilineTextAlignment(.leading)
+                .padding(.bottom)
+            
+            HStack {
+                articleSource
+                Spacer()
+                articleDate
             }
+            .font(.footnote)
+            .padding(.bottom, 5)
         }
-        .onDisappear() { isShown.toggle() }
+        .foregroundColor(article.isBreakingNews ? .red : .white)
+        .padding(.horizontal)
     }
     
     private var articleDate: some View {

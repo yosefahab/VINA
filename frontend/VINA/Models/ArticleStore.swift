@@ -12,10 +12,10 @@ import SwiftUI
 /// The ViewModel, used to control the data to be represented
 class ArticleStore: ObservableObject {
     
-    //let SERVER_URL: String = "http://raspberrypi.local:8000"
+    static private let SERVER_URL: String = "http://127.0.0.1:8080"
     // TODO: implement custom categories
-    static private let ARTICLES_URL: String = "http://127.0.0.1:8080/articles/science"
-    static private let BREAKING_NEWS_URL: String = "http://127.0.0.1:8080/breaking_news/celebrities"
+    static private let ARTICLES_URL: String = SERVER_URL + "/articles/science"
+    static private let BREAKING_NEWS_URL: String = SERVER_URL + "/breaking_news/science"
     
     // How many articles to fetch per request
     static private let ARTICLE_FETCH_COUNT: Int = 10
@@ -23,18 +23,18 @@ class ArticleStore: ObservableObject {
     static private let APPEND_FREQ_SECS: Double = 5
     static private let FETCH_FREQ_SECS: Double = APPEND_FREQ_SECS * Double(ARTICLE_FETCH_COUNT)
     
-    
     @Published
     var newsBuffer: [ArticleViewModel] = []
     
     @AppStorage(StorageStrings.HISTORY_SIZE)
     var BUFFER_CAPACITY: Int = Constants.DEFAULT_BUFFER_CAPACITY
-    
+
     static public var sampleData: [Article] {
         var samples: [Article] = []
         for i in 1...10 {
             samples.append(
                 Article(
+                    id: String(i),
                     title: "Some Title For Article\(i)",
                     summary: String(repeating: "Some Summary for Article\(i).",count: 2*i),
                     url: "https://www.news.google.com",
@@ -49,17 +49,21 @@ class ArticleStore: ObservableObject {
     public func startFetching() {
         Timer.scheduledTimer(withTimeInterval: Self.FETCH_FREQ_SECS, repeats: true) { timer in
             Task {
-#if DEBUG
-                await self.appendRandomArticles()
-#else
+//#if DEBUG
+//                await self.appendRandomArticles()
+//#else
                 await self.fetchArticlesBatch()
-#endif
+//#endif
             }
         }.fire()
     }
     private func fetchArticlesBatch() async {
         do {
-            let articles = try await fetchNewsBatch(url: URL(string: Self.ARTICLES_URL)!)
+            var url: String = Self.ARTICLES_URL
+            if let lastID = self.newsBuffer.last {
+                url += lastID.id.uuidString
+            }
+            let articles = try await fetchNewsBatch(url: URL(string: url)!)
             let newsBatch = articles.map { article in
                 ArticleViewModel(article: article, isBreakingNews: false)
             }

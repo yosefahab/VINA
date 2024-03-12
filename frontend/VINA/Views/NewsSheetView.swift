@@ -19,7 +19,6 @@ struct NewsSheetView: View {
         VStack(alignment: .center) {
             header
             newsList
-                .transition(.opacity)
             if viewModel.newsBuffer.isEmpty {
                 ProgressView("Fetching News...")
                     .progressViewStyle(.circular)
@@ -31,7 +30,6 @@ struct NewsSheetView: View {
         
     }
     private var newsList: some View {
-        // FIXME: disabling and enabling auto scroll breaks the scrolling functinoality
         // FIXME: vibration behavior when scrolling
         // TODO: add narration functionality
         ScrollViewReader { scrollProxy in

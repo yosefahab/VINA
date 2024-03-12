@@ -27,7 +27,7 @@ impl MongoDB {
     }
 
     /// returns a filter as bson::Document from the given <category> and a handle to the <collection> in the database.
-    pub async fn get_filter_collection(
+    async fn get_filter_collection(
         &self,
         collection: &str,
         category: Option<String>,
@@ -43,7 +43,7 @@ impl MongoDB {
         (filter, self.db.collection::<Article>(collection))
     }
 
-    pub async fn get_article(
+    pub async fn get_articles(
         &self,
         category: String,
         offset: i64,

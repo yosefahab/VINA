@@ -29,7 +29,7 @@ class Scrapper:
     def start(self, event: Event):
         self.logger.info("scrapper started")
         # TODO: remove limit
-        self.__scrape_sources(self.newspapers_list[0:30])
+        self.__scrape_sources(self.newspapers_list)
         self.logger.info(
             "finished scrapping with %d articles", self.pipeline.NEWS_BUFFER.qsize()
         )  # TODO: make it private
@@ -61,7 +61,7 @@ class Scrapper:
                 articles.append(
                     Article.from_article(
                         current_article,
-                        category="Science",  # TODO: detect category
+                        category="science",  # TODO: detect category
                     )
                 )
             except Exception as e:

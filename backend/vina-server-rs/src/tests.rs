@@ -5,22 +5,25 @@ mod mongotests {
     use mongodb::options::ClientOptions;
     use mongodb::{Client, Collection};
 
+    use std::env;
+
     use chrono::Utc;
+
     async fn insert_articles(collection: Collection<Document>, n: i32) -> Result<()> {
         let today = Utc::now().naive_utc();
         let formatted_datetime = today.format("%d/%m/%Y").to_string();
 
         let documents = (0..n)
-        .map(|i| {
-            doc! { "_id": i,
-                "title": format!("Article{}", i),
-                "summary": format!("News article{} summary, it should be long as you know, but this is for testing purposes, and i don't have time to write stuff", i),
-                "date": formatted_datetime.clone(),
-                "category": "science",
-                "url": "https://testing.fakeURL.com/science"
-            }
-        })
-        .collect::<Vec<_>>();
+            .map(|i| {
+                doc! { "_id": i,
+                    "title": format!("Article{}", i),
+                    "summary": format!("News article{} summary, it should be long as you know, but this is for testing purposes, and i don't have time to write stuff", i),
+                    "date": formatted_datetime.clone(),
+                    "category": "science",
+                    "url": "https://testing.fakeURL.com/science"
+                }
+            })
+            .collect::<Vec<_>>();
         collection.insert_many(documents, None).await?;
         println!("{n} items inserted successfully!");
         Ok(())
@@ -28,6 +31,8 @@ mod mongotests {
 
     #[actix_web::test]
     async fn insert_20() {
+        let env_path = env::current_dir().map(|a| a.join("../sql/.env")).unwrap();
+        dotenv::from_path(env_path.as_path()).unwrap();
         let username = std::env::var("MONGO_USERNAME").expect("Failed to read MONGO_USERNAME");
         let password = std::env::var("MONGO_PASSWORD").expect("Failed to read MONGO_PASSWORD");
         let client_options = ClientOptions::parse(format!(

@@ -2,19 +2,23 @@ mod apis;
 mod interfaces;
 mod models;
 mod tests;
+use std::env;
+
 use actix_web::{middleware::Logger, web::Data, App, HttpServer};
 use apis::articles::*;
 use interfaces::database::MongoDB;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    std::env::set_var("RUST_LOG", "debug");
-    std::env::set_var("RUST_BACKTRACE", "1");
+    env::set_var("RUST_LOG", "debug");
+    env::set_var("RUST_BACKTRACE", "1");
 
+    let env_path = env::current_dir().map(|a| a.join("../sql/.env")).unwrap();
+    dotenv::from_path(env_path.as_path()).unwrap();
     // we want to panic if credentials aren't set anyway
-    let username = std::env::var("MONGO_USERNAME").unwrap();
-    let password = std::env::var("MONGO_PASSWORD").unwrap();
-    std::env::set_var(
+    let username = env::var("MONGO_USERNAME").unwrap();
+    let password = env::var("MONGO_PASSWORD").unwrap();
+    env::set_var(
         "MONGOURI",
         format!("mongodb://{}:{}@localhost:27017", username, password),
     );

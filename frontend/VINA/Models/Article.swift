@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct Article: Decodable {
-    
+    let id: String
     let title: String
     let summary: String
     let url: String
     let date: String
     let category: String
     
-    init(title: String, summary: String, url: String, date: String, category: String) {
+    init(id: String, title: String, summary: String, url: String, date: String, category: String) {
+        self.id = id
         self.title = title
         self.summary = summary
         self.url = url
@@ -34,18 +35,16 @@ struct ArticleViewModel: Identifiable {
     let isBreakingNews: Bool
     
     init(article: Article, isBreakingNews: Bool = false) {
-        self.id = UUID()
+        self.id = UUID(uuidString: article.id) ?? UUID()
         self.title = article.title
         self.summary = article.summary
         self.url = article.url
         self.date = article.date
         self.isBreakingNews = isBreakingNews
         
-        // check if string matches a url
-        let regex = try? NSRegularExpression(pattern: "([^\\.]+)\\.[^\\.\\/]+$")
-        let matches = regex?.matches(in: self.url, range: NSRange(location: 0, length: self.url.count))
-        if let match = matches?.first {
-            self.domainName = (self.url as NSString).substring(with: match.range)
+        // extract the domain name from the url by checking the substring before the ".com" part
+        if let match = self.url.range(of: "(?<=\\.)([^./]+)(?=\\.com)", options: .regularExpression) {
+            self.domainName = String(self.url[match])
         } else {
             self.domainName = "?"
         }

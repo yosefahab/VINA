@@ -5,7 +5,7 @@ mod tests;
 use std::env;
 
 use actix_web::{middleware::Logger, web::Data, App, HttpServer};
-use apis::articles::*;
+use apis::{articles::*, healthz::healthz};
 use interfaces::database::MongoDB;
 
 #[actix_web::main]
@@ -33,6 +33,7 @@ async fn main() -> std::io::Result<()> {
             .wrap(logger)
             .service(get_article)
             .service(get_breaking_news)
+            .service(healthz)
     })
     .bind(("127.0.0.1", 8080))?
     .run()

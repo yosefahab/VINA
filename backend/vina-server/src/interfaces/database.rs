@@ -13,7 +13,7 @@ pub struct MongoDB {
 impl MongoDB {
     /// Returns a database instance
     pub async fn init() -> MongoDB {
-        let uri = match std::env::var("MONGOURI") {
+        let uri = match std::env::var("MONGO_URI") {
             Ok(uri) => uri,
             Err(_) => unreachable!(), // impossible case, as we set the env variable before calling
                                       // this function.
@@ -22,8 +22,14 @@ impl MongoDB {
             .await
             .expect("Failed to instantiate database client"); // we want this to crash if we cannot
                                                               // connect anyway
-        let db = client.database("news");
-        MongoDB { db }
+        let db = match std::env::var("MONGO_DB") {
+            Ok(table) => table,
+            Err(_) => unreachable!(),
+        };
+
+        MongoDB {
+            db: client.database(&db),
+        }
     }
 
     /// returns a filter as bson::Document from the given <category> and a handle to the <collection> in the database.

@@ -13,14 +13,13 @@ async fn main() -> std::io::Result<()> {
     env::set_var("RUST_LOG", "debug");
     env::set_var("RUST_BACKTRACE", "1");
 
-    let env_path = env::current_dir().map(|a| a.join("../sql/.env")).unwrap();
-    dotenv::from_path(env_path.as_path()).unwrap();
     // we want to panic if credentials aren't set anyway
     let username = env::var("MONGO_USERNAME").unwrap();
     let password = env::var("MONGO_PASSWORD").unwrap();
+    let port = env::var("MONGO_PORT").unwrap();
     env::set_var(
-        "MONGOURI",
-        format!("mongodb://{}:{}@localhost:27017", username, password),
+        "MONGO_URI",
+        format!("mongodb://{}:{}@localhost:{}", username, password, port),
     );
     // "mongodb+srv://<YOUR USERNAME HERE>:<YOUR PASSWORD HERE>@cluster0.e5akf.mongodb.net/<DB_NAME>?w=majority"
 
@@ -35,7 +34,7 @@ async fn main() -> std::io::Result<()> {
             .service(get_breaking_news)
             .service(healthz)
     })
-    .bind(("127.0.0.1", 8080))?
+    .bind(("0.0.0.0", 8080))?
     .run()
     .await
 }

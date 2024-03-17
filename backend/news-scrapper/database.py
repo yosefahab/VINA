@@ -14,11 +14,11 @@ class Database:
             username = os.environ["MONGO_USERNAME"]
             password = os.environ["MONGO_PASSWORD"]
 
-            client = pymongo.MongoClient(
+            self.client = pymongo.MongoClient(
                 "mongodb://{}:{}@localhost:27017".format(username, password),
                 connect=True,
             )
-            self.database = client["news"]
+            self.database = self.client["news"]
             self.articles = self.database["articles"]
             self.breaking_news = self.database["breaking_news"]
         except Exception as e:
@@ -47,12 +47,14 @@ class Database:
                 self.__add_one_article(article)
 
             stop = event.is_set()
+        else:
+            self.client.close()
 
 
 if __name__ == "__main__":
     from dotenv import load_dotenv
 
-    load_dotenv(override=True, dotenv_path="../sql/.env")
+    load_dotenv(override=True, dotenv_path="../database/.env")
     e = Event()
     p = Pipeline()
     p.put_one(

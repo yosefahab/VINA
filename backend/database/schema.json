@@ -1,5 +1,5 @@
 {
-	"title": "article",
+	"title": "articles",
 	"bsonType": "object",
 	"required": [
 		"title",
@@ -9,7 +9,6 @@
 		"summary"
 	],
 	"properties": {
-		"_id": "ObjectId",
 		"title": {
 			"bsonType": "string"
 		},
@@ -20,8 +19,7 @@
 			"bsonType": "string"
 		},
 		"url": {
-			"bsonType": "string",
-			"unique": true
+			"bsonType": "string"
 		},
 		"summary": {
 			"bsonType": "string"

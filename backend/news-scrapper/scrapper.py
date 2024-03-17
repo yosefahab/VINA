@@ -28,7 +28,6 @@ class Scrapper:
     # scrape main sources and dispatch fetch function
     def start(self, event: Event):
         self.logger.info("scrapper started")
-        # TODO: remove limit
         self.__scrape_sources(self.newspapers_list)
         self.logger.info(
             "finished scrapping with %d articles", self.pipeline.NEWS_BUFFER.qsize()

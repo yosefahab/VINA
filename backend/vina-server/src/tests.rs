@@ -5,8 +5,6 @@ mod mongotests {
     use mongodb::options::ClientOptions;
     use mongodb::{Client, Collection};
 
-    use std::env;
-
     use chrono::Utc;
 
     async fn insert_articles(collection: Collection<Document>, n: i32) -> Result<()> {
@@ -31,8 +29,6 @@ mod mongotests {
 
     #[actix_web::test]
     async fn insert_20() {
-        let env_path = env::current_dir().map(|a| a.join("../sql/.env")).unwrap();
-        dotenv::from_path(env_path.as_path()).unwrap();
         let username = std::env::var("MONGO_USERNAME").expect("Failed to read MONGO_USERNAME");
         let password = std::env::var("MONGO_PASSWORD").expect("Failed to read MONGO_PASSWORD");
         let client_options = ClientOptions::parse(format!(

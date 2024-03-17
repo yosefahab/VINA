@@ -1,6 +1,6 @@
 [package]
 name = "vina-server"
-version = "0.0.1"
+version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -12,7 +12,10 @@ serde = "1.0.195"
 env_logger = "0.10.1"
 log = "0.4.20"
 futures = "0.3.30"
-dotenv = "0.15.0"
 
 [dev-dependencies]
 chrono = "0.4"
+
+[[bin]]
+name = "vina-server"
+path = "src/main.rs"

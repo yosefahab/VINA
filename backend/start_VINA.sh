@@ -3,12 +3,12 @@
 echo "WIP DO NOT RUN!" ; exit 1
 
 
-# start the database (Mongodb)
+# start the database (MongoDB)
 mongo start &
 # check if it started correctly
 mongo status &> /dev/null 
 if [[ $? -eq 0 ]]; then
-	echo "MySQL is ready."
+	echo "MongoDB is ready."
 else
 	echo "Error: mongodb failed to start."
 	exit 1 
@@ -26,7 +26,7 @@ if [[ $health_check_response -eq 200 ]]; then
 else
   echo "Error! Actix server NOT healthy"
 	kill -15 mongo 
-	kill -15 vina-server-rs
+	kill -15 vina-server
 	exit 1
 fi
 
@@ -34,3 +34,7 @@ fi
 wait
 
 echo "All processes started!"
+
+
+# Alternative, use docker
+docker-compose up -d  # Starts all services in detached mode

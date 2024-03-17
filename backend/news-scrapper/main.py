@@ -1,4 +1,5 @@
 import sys
+from os import path
 sys.dont_write_bytecode = True
 import logging
 
@@ -6,15 +7,16 @@ from scrapper import Scrapper
 from pipeline import Pipeline
 from database import Database
 
-from dotenv import load_dotenv
 from threading import Event
 from concurrent.futures import ThreadPoolExecutor
 
-def main():
-    # load env variables for database
-    load_dotenv(override=True, dotenv_path="../sql/.env")
+if not path.exists("./tokenizers"):
+    import nltk
+    nltk.download('punkt', '.')
 
-    FORMAT = "[%(levelname)s] | [%(asctime)s] | In %(module)s: %(message)s\n"
+def main():
+
+    FORMAT = "[%(asctime)s] | [%(levelname)s] | In %(module)s: %(message)s\n"
     logging.basicConfig(format=FORMAT, filename="VINA.log", filemode="w", level=logging.INFO)
 
     _pipeline = Pipeline()
@@ -26,8 +28,8 @@ def main():
         except Exception:
             exit(0)
 
-        executor.submit(news_scrapper.start, event)
         executor.submit(db.consume, event)
+        executor.submit(news_scrapper.start, event)
 
     logging.info("Finished, exitting.")
 if __name__ == "__main__":

@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+
+  vina-db:
+    container_name: vina-db
+    build: ./database/
+    env_file: ./database/.env
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./database/init.js:/docker-entrypoint-initdb.d/init.js:ro
+      - ./database/schema.json:/docker-entrypoint-initdb.d/schema.json:ro
+      - ./data:/data/db
+
+  vina-scrapper:
+    container_name: vina-scrapper
+    build: ./news-scrapper/
+    env_file: ./database/.env
+    volumes:
+      - ./news-scrapper/newspapers.txt:/app/newspapers.txt:ro
+      - ./news-scrapper/tokenizers:/app/tokenizers:ro
+    depends_on:
+      - vina-db
+
+  vina-server:
+    container_name: vina-server
+    restart: unless-stopped
+    build: ./vina-server/
+    env_file: ./database/.env
+    ports:
+      - "8080:8080"
+    depends_on:
+      - vina-db

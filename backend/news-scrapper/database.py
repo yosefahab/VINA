@@ -15,9 +15,11 @@ class Database:
             password = os.environ["MONGO_PASSWORD"]
 
             self.client = pymongo.MongoClient(
-                "mongodb://{}:{}@localhost:27017".format(username, password),
+                "mongodb://{}:{}@vina-db:27017".format(username, password),
                 connect=True,
+                serverSelectionTimeoutMS=10_000
             )
+            self.client.server_info() # MongoClient doesn't automatically raise exception on bad connection
             self.database = self.client["news"]
             self.articles = self.database["articles"]
             self.breaking_news = self.database["breaking_news"]
@@ -52,9 +54,6 @@ class Database:
 
 
 if __name__ == "__main__":
-    from dotenv import load_dotenv
-
-    load_dotenv(override=True, dotenv_path="../database/.env")
     e = Event()
     p = Pipeline()
     p.put_one(

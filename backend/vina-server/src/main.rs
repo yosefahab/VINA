@@ -19,7 +19,7 @@ async fn main() -> std::io::Result<()> {
     let port = env::var("MONGO_PORT").unwrap();
     env::set_var(
         "MONGO_URI",
-        format!("mongodb://{}:{}@localhost:{}", username, password, port),
+        format!("mongodb://{}:{}@vina-db:{}", username, password, port),
     );
     // "mongodb+srv://<YOUR USERNAME HERE>:<YOUR PASSWORD HERE>@cluster0.e5akf.mongodb.net/<DB_NAME>?w=majority"
 

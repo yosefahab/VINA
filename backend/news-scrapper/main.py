@@ -17,7 +17,8 @@ if not path.exists("./tokenizers"):
 def main():
 
     FORMAT = "[%(asctime)s] | [%(levelname)s] | In %(module)s: %(message)s\n"
-    logging.basicConfig(format=FORMAT, filename="VINA.log", filemode="w", level=logging.INFO)
+    # logging.basicConfig(format=FORMAT, filename="VINA.log", filemode="w", level=logging.INFO)
+    logging.basicConfig(format=FORMAT, level=logging.INFO)
 
     _pipeline = Pipeline()
     event = Event()

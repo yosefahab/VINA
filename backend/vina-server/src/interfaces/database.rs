@@ -12,7 +12,7 @@ pub struct MongoDB {
 
 impl MongoDB {
     /// Returns a database instance
-    pub async fn init() -> MongoDB {
+    pub async fn init() -> Result<MongoDB, ()> {
         let uri = match std::env::var("MONGO_URI") {
             Ok(uri) => uri,
             Err(_) => unreachable!(), // impossible case, as we set the env variable before calling
@@ -26,9 +26,11 @@ impl MongoDB {
             Ok(table) => table,
             Err(_) => unreachable!(),
         };
+        let db = client.database(&db);
 
-        MongoDB {
-            db: client.database(&db),
+        match db.run_command(doc! { "ping": 1 }, None).await {
+            Ok(_) => Ok(MongoDB { db }),
+            Err(_) => Err(()),
         }
     }
 

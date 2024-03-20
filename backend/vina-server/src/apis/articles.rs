@@ -1,9 +1,8 @@
 use crate::interfaces::database::MongoDB;
-use actix_web::web::Data;
-use actix_web::HttpResponse;
 use actix_web::{
     get,
-    web::{Path, Query},
+    web::{Data, Path, Query},
+    HttpResponse,
 };
 use serde::Deserialize;
 

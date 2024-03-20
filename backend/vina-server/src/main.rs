@@ -4,6 +4,7 @@ mod models;
 mod tests;
 use std::env;
 
+use actix_files::Files;
 use actix_governor::{Governor, GovernorConfigBuilder};
 use actix_web::{middleware::Logger, web::Data, App, HttpServer};
 use apis::{articles::*, healthz::healthz};
@@ -21,7 +22,7 @@ async fn main() -> std::io::Result<()> {
     let port = env::var("MONGO_PORT").expect("Missing env var: MONGO_PORT");
     env::set_var(
         "MONGO_URI",
-        format!("mongodb://{}:{}@vina-db:{}", username, password, port),
+        format!("mongodb://{}:{}@localhost:{}", username, password, port),
     );
     let db = Data::new(MongoDB::init().await.expect("Error initializing MongoDB"));
 
@@ -39,6 +40,7 @@ async fn main() -> std::io::Result<()> {
             .service(get_article)
             .service(get_breaking_news)
             .service(healthz)
+            .service(Files::new("/", "./public").index_file("index.html"))
     })
     .bind(("127.0.0.1", 8080))?
     .run()

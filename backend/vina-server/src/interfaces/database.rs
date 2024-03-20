@@ -2,6 +2,7 @@ use crate::models::article::Article;
 use futures::TryStreamExt;
 use mongodb::{
     bson::{doc, Document},
+    error::Error,
     options::FindOptions,
     Client, Collection, Database,
 };
@@ -12,7 +13,7 @@ pub struct MongoDB {
 
 impl MongoDB {
     /// Returns a database instance
-    pub async fn init() -> Result<MongoDB, ()> {
+    pub async fn init() -> Result<MongoDB, Error> {
         let uri = match std::env::var("MONGO_URI") {
             Ok(uri) => uri,
             Err(_) => unreachable!(), // impossible case, as we set the env variable before calling
@@ -30,7 +31,7 @@ impl MongoDB {
 
         match db.run_command(doc! { "ping": 1 }, None).await {
             Ok(_) => Ok(MongoDB { db }),
-            Err(_) => Err(()),
+            Err(e) => Err(e),
         }
     }
 

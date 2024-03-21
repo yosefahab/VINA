@@ -44,20 +44,21 @@ function createCard(title, text, url, date) { //HTMLLIElement
 	card.appendChild(cardFooter);
 	return card;
 }
-async function fetchArticles(newsList) {
+async function fetchArticles(newsList, loader) {
 	if (isLoading) return;
 
 	isLoading = true;
+	loader.classList.add("show");
 
 	const response = await fetch(`http://localhost:8080/articles/science?limit=5`);
+	if (response.status.valueOf() !== 200) {
+		console.log("Bad response");
+		return;
+	}
 	const articles = await response.json();
 
 	if (articles.length === 0) {
 		console.log("Empty articles");
-		return;
-	}
-	if (response.status.valueOf() !== 200) {
-		console.log("Bad response");
 		return;
 	}
 
@@ -68,16 +69,17 @@ async function fetchArticles(newsList) {
 
 	currentPage++;
 	isLoading = false;
+	loader.classList.remove("show");
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+	const loader = document.getElementById("loader");
 	const newsList = document.getElementById('news-list');
-	fetchArticles(newsList);
+	fetchArticles(newsList, loader);
 
 	window.addEventListener('scroll', () => {
-		const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-		if (scrollTop + clientHeight >= scrollHeight - 10) {
-			fetchArticles(newsList);
+		if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+			fetchArticles(newsList, loader);
 		}
 	});
 });

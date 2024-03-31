@@ -13,12 +13,13 @@ import SwiftUI
 class ArticleStore: ObservableObject {
     
     static private let SERVER_URL: String = "http://127.0.0.1:8080"
-    // TODO: implement custom categories
-    static private let ARTICLES_URL: String = SERVER_URL + "/articles/science"
-    static private let BREAKING_NEWS_URL: String = SERVER_URL + "/breaking_news/science"
     
     // How many articles to fetch per request
-    static private let ARTICLE_FETCH_COUNT: Int = 10
+    static private let ARTICLE_FETCH_COUNT: Int = 2
+    // TODO: implement custom categories
+    static private let ARTICLES_URL: String = SERVER_URL + "/articles/science?limit=\(ARTICLE_FETCH_COUNT)"
+    static private let BREAKING_NEWS_URL: String = SERVER_URL + "/breaking_news/science?limit=\(ARTICLE_FETCH_COUNT)"
+    
     // frequencies to fetch and append news
     static private let APPEND_FREQ_SECS: Double = 5
     static private let FETCH_FREQ_SECS: Double = APPEND_FREQ_SECS * Double(ARTICLE_FETCH_COUNT)
@@ -60,8 +61,8 @@ class ArticleStore: ObservableObject {
     private func fetchArticlesBatch() async {
         do {
             var url: String = Self.ARTICLES_URL
-            if let lastID = self.newsBuffer.last {
-                url += lastID.id.uuidString
+            if let lastArticle = self.newsBuffer.last {
+                url += "&offset=\(lastArticle.id)"
             }
             let articles = try await fetchNewsBatch(url: URL(string: url)!)
             let newsBatch = articles.map { article in
@@ -75,6 +76,10 @@ class ArticleStore: ObservableObject {
     }
     private func fetchBreakingNewsBatch() async {
         do {
+            var url: String = Self.ARTICLES_URL
+            if let lastArticle = self.newsBuffer.last {
+                url += "&offset=\(lastArticle.id)"
+            }
             let articles = try await fetchNewsBatch(url: URL(string: Self.BREAKING_NEWS_URL)!)
             let newsBatch = articles.map { article in
                 ArticleViewModel(article: article, isBreakingNews: true)

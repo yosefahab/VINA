@@ -26,7 +26,7 @@ struct Article: Decodable {
 }
 
 struct ArticleViewModel: Identifiable {
-    let id: UUID
+    let id: String
     let url: String
     let title: String
     let summary: String
@@ -35,7 +35,7 @@ struct ArticleViewModel: Identifiable {
     let isBreakingNews: Bool
     
     init(article: Article, isBreakingNews: Bool = false) {
-        self.id = UUID(uuidString: article.id) ?? UUID()
+        self.id = article.id
         self.title = article.title
         self.summary = article.summary
         self.url = article.url
@@ -51,6 +51,6 @@ struct ArticleViewModel: Identifiable {
     }
     
     func getName() -> String {
-        return "Entry with id \(self.id.uuidString)"
+        return "Entry with id \(self.id)"
     }
 }

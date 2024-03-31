@@ -1,5 +1,6 @@
 let currentPage = 1;
 let isLoading = false;
+let lastId = null;
 
 function createCard(title, text, url, date) { //HTMLLIElement
 	function getDomainName(url) {
@@ -50,17 +51,28 @@ async function fetchArticles(newsList, loader) {
 	isLoading = true;
 	loader.classList.add("show");
 
-	const response = await fetch(`http://localhost:8080/articles/science?limit=5`);
-	if (response.status.valueOf() !== 200) {
+	// let requestUrl = `http://localhost:8080/articles/science?limit=5`
+	const url = `http://localhost:8080/articles/science?limit=1${lastId ? `&offset=${lastId}` : ''}`;
+
+
+	const response = await fetch(url)
+		.catch(error => {
+			console.error("Error fetching data:", error);
+			return; // or handle the error in some other way
+		});
+
+	if (!response || response.status !== 200) {
 		console.log("Bad response");
 		return;
 	}
 	const articles = await response.json();
 
 	if (articles.length === 0) {
-		console.log("Empty articles");
+		console.log("No More Data");
 		return;
 	}
+
+	lastId = articles[articles.length - 1].id
 
 	articles.forEach(article => {
 		const card = createCard(article.title, article.summary, article.url, article.date);

@@ -21,10 +21,11 @@ async fn main() -> std::io::Result<()> {
     let password = env::var("MONGO_PASSWORD").expect("Missing env var: MONGO_PASSWORD");
     let port = env::var("MONGO_PORT").expect("Missing env var: MONGO_PORT");
     let db_name = env::var("MONGO_DB").expect("Missing env var: Mongo_DB");
+    let db_hostname = env::var("MONGO_HOSTNAME").expect("Missing env var: MONGO_HOSTNAME");
 
     let uri = format!(
-        "mongodb://{}:{}@localhost:{}/{}",
-        username, password, port, db_name
+        "mongodb://{}:{}@{}:{}/{}",
+        username, password, db_hostname, port, db_name
     );
     let db = Data::new(
         MongoDB::init(&uri)
@@ -48,7 +49,7 @@ async fn main() -> std::io::Result<()> {
             .service(healthz)
             .service(Files::new("/", "./public").index_file("index.html"))
     })
-    .bind(("127.0.0.1", 8080))?
+    .bind(("0.0.0.0", 8080))?
     .run()
     .await
 }

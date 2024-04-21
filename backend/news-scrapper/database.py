@@ -13,9 +13,10 @@ class Database:
         try:
             username = os.environ["MONGO_USERNAME"]
             password = os.environ["MONGO_PASSWORD"]
+            hostname = os.environ["MONGO_HOSTNAME"]
 
             self.client = pymongo.MongoClient(
-                "mongodb://{}:{}@vina-db:27017".format(username, password),
+                "mongodb://{}:{}@{}:27017".format(username, password, hostname),
                 connect=True,
                 serverSelectionTimeoutMS=10_000
             )

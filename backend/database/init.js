@@ -16,7 +16,7 @@ const adminDb = db.getSiblingDB('admin');
 adminDb.createUser({
 	user: username,
 	pwd: password,
-	roles: [{ role: 'root', db: 'admin' }, { role: 'dbOwner', db: 'news' }]
+	roles: [{ role: "root", db: "admin" }]
 });
 
 // Authenticate as the admin user
@@ -24,6 +24,11 @@ adminDb.auth(username, password);
 
 // Switch to the "news" database
 const db = db.getSiblingDB(database);
+db.createUser({
+	user: username,
+	pwd: password,
+	roles:[{ role: "dbOwner", db: "news"}]
+});
 
 // Drop existing collections if they exist
 db.articles.drop();

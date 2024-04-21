@@ -1,5 +1,5 @@
 import sys
-from os import path
+
 sys.dont_write_bytecode = True
 import logging
 
@@ -7,14 +7,18 @@ from scrapper import Scrapper
 from pipeline import Pipeline
 from database import Database
 
+from os import path, listdir, getcwd
 from threading import Event
 from concurrent.futures import ThreadPoolExecutor
 
-if not path.exists("./tokenizers"):
-    import nltk
-    nltk.download('punkt', '.')
+
 
 def main():
+    if not path.exists("./tokenizers") or len(listdir()) == 0:
+        import nltk
+
+        nltk.download("punkt", ".")
+        nltk.data.path.append(path.abspath(getcwd()))
 
     FORMAT = "[%(asctime)s] | [%(levelname)s] | In %(module)s: %(message)s\n"
     # logging.basicConfig(format=FORMAT, filename="VINA.log", filemode="w", level=logging.INFO)
@@ -33,5 +37,7 @@ def main():
         executor.submit(news_scrapper.start, event)
 
     logging.info("Finished, exitting.")
+
+
 if __name__ == "__main__":
     main()

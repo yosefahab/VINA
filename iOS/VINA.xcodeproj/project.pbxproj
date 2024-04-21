@@ -1,0 +1,415 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EBB6E29D2B67D33100572FE2 /* ArticleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB6E29C2B67D33100572FE2 /* ArticleStore.swift */; };
+		EBB6E29F2B67D93F00572FE2 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB6E29E2B67D93F00572FE2 /* Background.swift */; };
+		EBD247CC297828CB0081DA51 /* VINAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD247CB297828CB0081DA51 /* VINAApp.swift */; };
+		EBD247D0297828CC0081DA51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBD247CF297828CC0081DA51 /* Assets.xcassets */; };
+		EBD247D3297828CC0081DA51 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBD247D2297828CC0081DA51 /* Preview Assets.xcassets */; };
+		EBD247DE297829710081DA51 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD247DD297829710081DA51 /* Article.swift */; };
+		EBD247E0297829840081DA51 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD247DF297829840081DA51 /* Theme.swift */; };
+		EBD247E2297829B80081DA51 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD247E1297829B80081DA51 /* NetworkClient.swift */; };
+		EBD247E4297829CC0081DA51 /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD247E3297829CC0081DA51 /* ArticleView.swift */; };
+		EBD247E6297829F10081DA51 /* NewsSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD247E5297829F10081DA51 /* NewsSheetView.swift */; };
+		EBD247E829782A030081DA51 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD247E729782A030081DA51 /* SettingsView.swift */; };
+		EBD247EA29782A140081DA51 /* TransparentEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD247E929782A140081DA51 /* TransparentEffect.swift */; };
+		EBD247EC29782A230081DA51 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD247EB29782A230081DA51 /* Constants.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		EBB6E29C2B67D33100572FE2 /* ArticleStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleStore.swift; sourceTree = "<group>"; };
+		EBB6E29E2B67D93F00572FE2 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		EBD247C8297828CB0081DA51 /* VINA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VINA.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBD247CB297828CB0081DA51 /* VINAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINAApp.swift; sourceTree = "<group>"; };
+		EBD247CF297828CC0081DA51 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EBD247D2297828CC0081DA51 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		EBD247D4297828CC0081DA51 /* VINA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VINA.entitlements; sourceTree = "<group>"; };
+		EBD247DD297829710081DA51 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		EBD247DF297829840081DA51 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		EBD247E1297829B80081DA51 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		EBD247E3297829CC0081DA51 /* ArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
+		EBD247E5297829F10081DA51 /* NewsSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSheetView.swift; sourceTree = "<group>"; };
+		EBD247E729782A030081DA51 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		EBD247E929782A140081DA51 /* TransparentEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentEffect.swift; sourceTree = "<group>"; };
+		EBD247EB29782A230081DA51 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EBD247C5297828CB0081DA51 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EBD247BF297828CB0081DA51 = {
+			isa = PBXGroup;
+			children = (
+				EBD247CA297828CB0081DA51 /* VINA */,
+				EBD247C9297828CB0081DA51 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EBD247C9297828CB0081DA51 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EBD247C8297828CB0081DA51 /* VINA.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EBD247CA297828CB0081DA51 /* VINA */ = {
+			isa = PBXGroup;
+			children = (
+				EBD247DC2978295B0081DA51 /* Models */,
+				EBD247DB297829530081DA51 /* Services */,
+				EBD247DA297829320081DA51 /* Views */,
+				EBD247CB297828CB0081DA51 /* VINAApp.swift */,
+				EBD247EB29782A230081DA51 /* Constants.swift */,
+				EBD247CF297828CC0081DA51 /* Assets.xcassets */,
+				EBD247D4297828CC0081DA51 /* VINA.entitlements */,
+				EBD247D1297828CC0081DA51 /* Preview Content */,
+			);
+			path = VINA;
+			sourceTree = "<group>";
+		};
+		EBD247D1297828CC0081DA51 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				EBD247D2297828CC0081DA51 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		EBD247DA297829320081DA51 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EBD247E3297829CC0081DA51 /* ArticleView.swift */,
+				EBD247E5297829F10081DA51 /* NewsSheetView.swift */,
+				EBD247E729782A030081DA51 /* SettingsView.swift */,
+				EBD247E929782A140081DA51 /* TransparentEffect.swift */,
+				EBB6E29E2B67D93F00572FE2 /* Background.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EBD247DB297829530081DA51 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				EBD247E1297829B80081DA51 /* NetworkClient.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		EBD247DC2978295B0081DA51 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EBD247DD297829710081DA51 /* Article.swift */,
+				EBD247DF297829840081DA51 /* Theme.swift */,
+				EBB6E29C2B67D33100572FE2 /* ArticleStore.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EBD247C7297828CB0081DA51 /* VINA */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EBD247D7297828CC0081DA51 /* Build configuration list for PBXNativeTarget "VINA" */;
+			buildPhases = (
+				EBD247C4297828CB0081DA51 /* Sources */,
+				EBD247C5297828CB0081DA51 /* Frameworks */,
+				EBD247C6297828CB0081DA51 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VINA;
+			productName = VINA;
+			productReference = EBD247C8297828CB0081DA51 /* VINA.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EBD247C0297828CB0081DA51 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					EBD247C7297828CB0081DA51 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+				};
+			};
+			buildConfigurationList = EBD247C3297828CB0081DA51 /* Build configuration list for PBXProject "VINA" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EBD247BF297828CB0081DA51;
+			productRefGroup = EBD247C9297828CB0081DA51 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EBD247C7297828CB0081DA51 /* VINA */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EBD247C6297828CB0081DA51 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBD247D3297828CC0081DA51 /* Preview Assets.xcassets in Resources */,
+				EBD247D0297828CC0081DA51 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EBD247C4297828CB0081DA51 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBB6E29F2B67D93F00572FE2 /* Background.swift in Sources */,
+				EBD247EA29782A140081DA51 /* TransparentEffect.swift in Sources */,
+				EBD247E829782A030081DA51 /* SettingsView.swift in Sources */,
+				EBD247E4297829CC0081DA51 /* ArticleView.swift in Sources */,
+				EBD247E0297829840081DA51 /* Theme.swift in Sources */,
+				EBD247EC29782A230081DA51 /* Constants.swift in Sources */,
+				EBD247CC297828CB0081DA51 /* VINAApp.swift in Sources */,
+				EBD247E2297829B80081DA51 /* NetworkClient.swift in Sources */,
+				EBD247DE297829710081DA51 /* Article.swift in Sources */,
+				EBB6E29D2B67D33100572FE2 /* ArticleStore.swift in Sources */,
+				EBD247E6297829F10081DA51 /* NewsSheetView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		EBD247D5297828CC0081DA51 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EBD247D6297828CC0081DA51 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		EBD247D8297828CC0081DA51 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = VINA/VINA.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"VINA/Preview Content\"";
+				DEVELOPMENT_TEAM = 43KLN63HJ8;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = VINA;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.news";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.YosefAhab.VINA;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		EBD247D9297828CC0081DA51 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = VINA/VINA.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"VINA/Preview Content\"";
+				DEVELOPMENT_TEAM = 43KLN63HJ8;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = VINA;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.news";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.YosefAhab.VINA;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EBD247C3297828CB0081DA51 /* Build configuration list for PBXProject "VINA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBD247D5297828CC0081DA51 /* Debug */,
+				EBD247D6297828CC0081DA51 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EBD247D7297828CC0081DA51 /* Build configuration list for PBXNativeTarget "VINA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBD247D8297828CC0081DA51 /* Debug */,
+				EBD247D9297828CC0081DA51 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EBD247C0297828CB0081DA51 /* Project object */;
+}

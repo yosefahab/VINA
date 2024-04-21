@@ -11,7 +11,7 @@ services:
     volumes:
       - ./database/init.js:/docker-entrypoint-initdb.d/init.js:ro
       - ./database/schema.json:/docker-entrypoint-initdb.d/schema.json:ro
-      - ./database/data:/app/data/db
+      - ./database/data:/data/db:rw
     networks:
       vina-network:
         aliases:
@@ -46,6 +46,8 @@ services:
     depends_on:
       vina-db:
         condition: service_started
+    volumes:
+      - ./vina-server/public:/app/public
 
 networks:
   vina-network:

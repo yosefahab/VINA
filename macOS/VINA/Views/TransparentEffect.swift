@@ -9,10 +9,10 @@ import Foundation
 import SwiftUI
 
 struct TransparentEffect: NSViewRepresentable {
-    
+
   func makeNSView(context: Self.Context) -> NSView {
-      return NSVisualEffectView()
+    return NSVisualEffectView()
   }
-    
-  func updateNSView(_ nsView: NSView, context: Context) { }
+
+  func updateNSView(_ nsView: NSView, context: Context) {}
 }
